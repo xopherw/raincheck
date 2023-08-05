@@ -74,5 +74,23 @@ def getWeatherDaily(lat, lon, metric=True):
     }
     r = req.get(base_url + path, params=params)
     data = r.json()
-    
-    return 0
+    weather_list = []
+    for i in data["list"]:
+        meta_data ={
+            "datetime" : i["dt"],
+            "day" : i["temp"]["day"],
+            "night" : i["temp"]["night"],
+            "max" : i["temp"]["max"],
+            "min" : i["temp"]["min"],
+            "wind_speed": i["speed"],
+            "humidity": i["humidity"],
+            "description": i["weather"][0]["main"],
+            "icon" : i["weather"][0]["icon"]
+        }
+        weather_list.append(meta_data)
+    weather = {
+        "country" : data["city"]["country"],
+        "city": data["city"]["name"],
+        "list" : weather_list
+    }
+    return weather
