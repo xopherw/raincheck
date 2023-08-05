@@ -21,3 +21,8 @@ async def getWeatherHourly(lat : float = 12, lon : float = 10):
     weather = ow.getWeatherHourly(lon, lat)
     return weather
 
+@app.get("/weather/daily")
+async def getWeatherDaily(lat : float = 12, lon : float = 10):
+    weather = ow.getWeatherDaily(lon, lat)
+    return weather
+
