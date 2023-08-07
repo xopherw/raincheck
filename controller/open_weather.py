@@ -41,7 +41,7 @@ def getWeatherHourly(lat, lon, metric=True):
     data = r.json()
     weather_list = []
     # TODO:
-    # Find a way to show only the future from date.now
+    # Find a way to show only the future hours from date.now
     for i in data["list"]:
         meta_data ={
             "datetime" : i["dt_txt"],
@@ -75,6 +75,8 @@ def getWeatherDaily(lat, lon, metric=True):
     r = req.get(base_url + path, params=params)
     data = r.json()
     weather_list = []
+    # TODO:
+    # Find a way to show only the future date from date.now
     for i in data["list"]:
         meta_data ={
             "datetime" : i["dt"],

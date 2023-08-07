@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import open_weather as ow
+import open_weather as ow, openroute_service as ors
 
 app = FastAPI()
 
@@ -7,9 +7,9 @@ app = FastAPI()
 def root():
     return {"message": "root of raincheck"}
 
-@app.get("/?city={city}")
+@app.get("/location")
 def getCity(city : str):
-    return {"city": city}
+    return ors.getLocationAutoComplete(city)
 
 @app.get("/weather")
 async def getWeather(lat : float = 12, lon : float = 10):
